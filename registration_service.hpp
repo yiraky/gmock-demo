@@ -11,5 +11,5 @@ class RegistrationService {
   bool registerUser(const std::string& name, const std::string& email);
 
  private:
-  EmailService* service;
+  EmailService* _service;
 };

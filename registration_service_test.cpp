@@ -15,7 +15,7 @@ TEST(UserRegistrationTest, SendsWelcomeEmail) {
   MockEmailService mock;
   RegistrationService reg(&mock);
 
-  EXPECT_CALL(mock, sendEmail(StrEq("adam@example.com"), StrEq("Welcome"), StrEq("Hello Adam"))).WillOnce(Return(true));
+  EXPECT_CALL(mock, sendEmail(StrEq("adam@test.com"), StrEq("Welcome"), StrEq("Hello Adam"))).WillOnce(Return(true));
 
   EXPECT_TRUE(reg.registerUser("Adam", "adam@test.com"));
 }
@@ -27,4 +27,13 @@ TEST(UserRegistrationTest, ReturnsFalseWhenEmailFails) {
   EXPECT_CALL(mock, sendEmail(StrEq("eve@test.com"), StrEq("Welcome"), StrEq("Hello Eve"))).WillOnce(Return(false));
 
   EXPECT_FALSE(reg.registerUser("Eve", "eve@test.com"));
+}
+
+TEST(UserRegistrationTest, YusufTest) {
+  MockEmailService mock;
+  RegistrationService reg(&mock);
+
+  EXPECT_CALL(mock, sendEmail(StrEq("0100900800"), StrEq("Welcome"), StrEq("Hello Yusuf"))).WillOnce(Return(false));
+
+  EXPECT_FALSE(reg.registerUser("Yusuf", "0100900800"));
 }
